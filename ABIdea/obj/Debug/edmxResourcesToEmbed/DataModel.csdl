@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ABIDEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Auth_Category">
+    <Key>
+      <PropertyRef Name="AC_ID" />
+    </Key>
+    <Property Name="AuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="AC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Blog_Author" Relationship="Self.FK_Auth_Category_Blog_Author" FromRole="Auth_Category" ToRole="Blog_Author" />
+    <NavigationProperty Name="Blog_Category" Relationship="Self.FK_Auth_Category_Blog_Category" FromRole="Auth_Category" ToRole="Blog_Category" />
+  </EntityType>
+  <EntityType Name="Auth_Credentials">
+    <Key>
+      <PropertyRef Name="Name_ID" />
+    </Key>
+    <Property Name="Name_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="F_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="M_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="L_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FB_SocialLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Blog_Author" Relationship="Self.FK_Blog_Author_Auth_Credentials" FromRole="Auth_Credentials" ToRole="Blog_Author" />
+    <NavigationProperty Name="UserCreds" Relationship="Self.FK_UserCred_Auth_Credentials" FromRole="Auth_Credentials" ToRole="UserCred" />
+  </EntityType>
+  <EntityType Name="Blog_Author">
+    <Key>
+      <PropertyRef Name="Auth_ID" />
+    </Key>
+    <Property Name="Auth_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_ID" Type="Int32" Nullable="false" />
+    <Property Name="Auth_Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Auth_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="TopBlogger" Type="Boolean" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Auth_Category" Relationship="Self.FK_Auth_Category_Blog_Author" FromRole="Blog_Author" ToRole="Auth_Category" />
+    <NavigationProperty Name="Auth_Credentials" Relationship="Self.FK_Blog_Author_Auth_Credentials" FromRole="Blog_Author" ToRole="Auth_Credentials" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Blog_Author" FromRole="Blog_Author" ToRole="Blogs" />
+  </EntityType>
+  <EntityType Name="Blog_Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category_Background" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Catgeory_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Auth_Category" Relationship="Self.FK_Auth_Category_Blog_Category" FromRole="Blog_Category" ToRole="Auth_Category" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Blog_Category" FromRole="Blog_Category" ToRole="Blogs" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuthorID" Type="Int32" Nullable="false" />
+    <Property Name="Views" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="BlogDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BlogPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BlogDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Blog_Author" Relationship="Self.FK_Blogs_Blog_Author" FromRole="Blogs" ToRole="Blog_Author" />
+    <NavigationProperty Name="Blog_Category" Relationship="Self.FK_Blogs_Blog_Category" FromRole="Blogs" ToRole="Blog_Category" />
+    <Property Name="BlogTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserCreds" Relationship="Self.FK_UserCred_Roles" FromRole="Roles" ToRole="UserCred" />
+  </EntityType>
+  <EntityType Name="UserCred">
+    <Key>
+      <PropertyRef Name="U_ID" />
+    </Key>
+    <Property Name="U_ID" Type="Int32" Nullable="false" />
+    <Property Name="NameID" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Auth_Credentials" Relationship="Self.FK_UserCred_Auth_Credentials" FromRole="UserCred" ToRole="Auth_Credentials" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserCred_Roles" FromRole="UserCred" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_Auth_Category_Blog_Author">
+    <End Role="Blog_Author" Type="Self.Blog_Author" Multiplicity="1" />
+    <End Role="Auth_Category" Type="Self.Auth_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog_Author">
+        <PropertyRef Name="Auth_ID" />
+      </Principal>
+      <Dependent Role="Auth_Category">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auth_Category_Blog_Category">
+    <End Role="Blog_Category" Type="Self.Blog_Category" Multiplicity="0..1" />
+    <End Role="Auth_Category" Type="Self.Auth_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog_Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Auth_Category">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_Author_Auth_Credentials">
+    <End Role="Auth_Credentials" Type="Self.Auth_Credentials" Multiplicity="1" />
+    <End Role="Blog_Author" Type="Self.Blog_Author" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Auth_Credentials">
+        <PropertyRef Name="Name_ID" />
+      </Principal>
+      <Dependent Role="Blog_Author">
+        <PropertyRef Name="Name_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCred_Auth_Credentials">
+    <End Role="Auth_Credentials" Type="Self.Auth_Credentials" Multiplicity="1" />
+    <End Role="UserCred" Type="Self.UserCred" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Auth_Credentials">
+        <PropertyRef Name="Name_ID" />
+      </Principal>
+      <Dependent Role="UserCred">
+        <PropertyRef Name="NameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogs_Blog_Author">
+    <End Role="Blog_Author" Type="Self.Blog_Author" Multiplicity="1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog_Author">
+        <PropertyRef Name="Auth_ID" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogs_Blog_Category">
+    <End Role="Blog_Category" Type="Self.Blog_Category" Multiplicity="1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog_Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserCred_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserCred" Type="Self.UserCred" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserCred">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ABIDEAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Auth_Category" EntityType="Self.Auth_Category" />
+    <EntitySet Name="Auth_Credentials" EntityType="Self.Auth_Credentials" />
+    <EntitySet Name="Blog_Author" EntityType="Self.Blog_Author" />
+    <EntitySet Name="Blog_Category" EntityType="Self.Blog_Category" />
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="UserCreds" EntityType="Self.UserCred" />
+    <AssociationSet Name="FK_Auth_Category_Blog_Author" Association="Self.FK_Auth_Category_Blog_Author">
+      <End Role="Blog_Author" EntitySet="Blog_Author" />
+      <End Role="Auth_Category" EntitySet="Auth_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auth_Category_Blog_Category" Association="Self.FK_Auth_Category_Blog_Category">
+      <End Role="Blog_Category" EntitySet="Blog_Category" />
+      <End Role="Auth_Category" EntitySet="Auth_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_Author_Auth_Credentials" Association="Self.FK_Blog_Author_Auth_Credentials">
+      <End Role="Auth_Credentials" EntitySet="Auth_Credentials" />
+      <End Role="Blog_Author" EntitySet="Blog_Author" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCred_Auth_Credentials" Association="Self.FK_UserCred_Auth_Credentials">
+      <End Role="Auth_Credentials" EntitySet="Auth_Credentials" />
+      <End Role="UserCred" EntitySet="UserCreds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogs_Blog_Author" Association="Self.FK_Blogs_Blog_Author">
+      <End Role="Blog_Author" EntitySet="Blog_Author" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogs_Blog_Category" Association="Self.FK_Blogs_Blog_Category">
+      <End Role="Blog_Category" EntitySet="Blog_Category" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCred_Roles" Association="Self.FK_UserCred_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserCred" EntitySet="UserCreds" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

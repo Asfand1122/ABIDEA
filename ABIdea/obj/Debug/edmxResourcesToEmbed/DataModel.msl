@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ABIDEAModelStoreContainer" CdmEntityContainer="ABIDEAEntities">
+    <EntitySetMapping Name="Auth_Category">
+      <EntityTypeMapping TypeName="ABIDEAModel.Auth_Category">
+        <MappingFragment StoreEntitySet="Auth_Category">
+          <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="AC_ID" ColumnName="AC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Auth_Credentials">
+      <EntityTypeMapping TypeName="ABIDEAModel.Auth_Credentials">
+        <MappingFragment StoreEntitySet="Auth_Credentials">
+          <ScalarProperty Name="Name_ID" ColumnName="Name_ID" />
+          <ScalarProperty Name="F_Name" ColumnName="F_Name" />
+          <ScalarProperty Name="M_Name" ColumnName="M_Name" />
+          <ScalarProperty Name="L_Name" ColumnName="L_Name" />
+          <ScalarProperty Name="FB_SocialLink" ColumnName="FB_SocialLink" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blog_Author">
+      <EntityTypeMapping TypeName="ABIDEAModel.Blog_Author">
+        <MappingFragment StoreEntitySet="Blog_Author">
+          <ScalarProperty Name="Auth_ID" ColumnName="Auth_ID" />
+          <ScalarProperty Name="Name_ID" ColumnName="Name_ID" />
+          <ScalarProperty Name="Auth_Email" ColumnName="Auth_Email" />
+          <ScalarProperty Name="Auth_Description" ColumnName="Auth_Description" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="TopBlogger" ColumnName="TopBlogger" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blog_Category">
+      <EntityTypeMapping TypeName="ABIDEAModel.Blog_Category">
+        <MappingFragment StoreEntitySet="Blog_Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Category_Title" ColumnName="Category_Title" />
+          <ScalarProperty Name="Category_Background" ColumnName="Category_Background" />
+          <ScalarProperty Name="Catgeory_Description" ColumnName="Catgeory_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blogs">
+      <EntityTypeMapping TypeName="ABIDEAModel.Blog">
+        <MappingFragment StoreEntitySet="Blogs">
+          <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+          <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+          <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="BlogDescription" ColumnName="BlogDescription" />
+          <ScalarProperty Name="BlogPicture" ColumnName="BlogPicture" />
+          <ScalarProperty Name="BlogDate" ColumnName="BlogDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ABIDEAModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCreds">
+      <EntityTypeMapping TypeName="ABIDEAModel.UserCred">
+        <MappingFragment StoreEntitySet="UserCred">
+          <ScalarProperty Name="U_ID" ColumnName="U_ID" />
+          <ScalarProperty Name="NameID" ColumnName="NameID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

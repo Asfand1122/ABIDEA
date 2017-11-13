@@ -1,0 +1,13 @@
+﻿body{
+    padding:0;
+    margin:0;
+    font-family: 'Roboto', sans-serif !important;
+}
+.navbar {
+    border-radius: 0px !important;
+}
+.imgcenter{
+    margin:0 auto;
+    display:block !important;
+
+}

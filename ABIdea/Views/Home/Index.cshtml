@@ -1,0 +1,234 @@
+﻿@model  ABIdea.Models.HomeModel.GetHomeData
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/css/custom/slider.css" rel="stylesheet" />
+    <script src="~/Content/js/custom/slider.js"></script>
+
+    <script src="~/Content/js/custom/vertical-slider.js"></script>
+    <link href="~/Content/css/custom/Vertical-Slider.css" rel="stylesheet" />
+
+    <link href="~/Content/css/custom/recent-cards.css" rel="stylesheet" />
+    <script src="~/Content/js/custom/recent-cards.js"></script>
+    <link href="~/Content/css/custom/button-css.css" rel="stylesheet" />
+    <link href="~/Content/css/custom/bloggers.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <div class="wrapper">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/Content/resc/slider/1.jpeg">
+                    <div class="carousel-caption">
+                        <h3>
+                            Headline
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
+                            ipsum dolor sit amet, consetetur sadipscing elitr.
+                        </p>
+                    </div>
+                </div>
+                <!-- End Item -->
+                <div class="item">
+                    <img src="~/Content/resc/slider/2.png">
+                    <div class="carousel-caption">
+                        <h3>
+                            Headline
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
+                            ipsum dolor sit amet, consetetur sadipscing elitr.
+                        </p>
+                    </div>
+                </div>
+                <!-- End Item -->
+                <div class="item">
+                    <img src="~/Content/resc/slider/3.png">
+                    <div class="carousel-caption">
+                        <h3>
+                            Headline
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
+                            ipsum dolor sit amet, consetetur sadipscing elitr.
+                        </p>
+                    </div>
+                </div>
+                <!-- End Item -->
+                <div class="item">
+                    <img src="~/Content/resc/slider/4.png">
+                    <div class="carousel-caption">
+                        <h3>
+                            Headline
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
+                            ipsum dolor sit amet, consetetur sadipscing elitr.
+                        </p>
+                    </div>
+                </div>
+                <!-- End Item -->
+            </div>
+            <!-- End Carousel Inner -->
+            <ul class="nav nav-pills nav-justified">
+                <li data-target="#myCarousel" data-slide-to="0" class="active">
+                    <a href="#">
+                        About<small>
+                            Lorem
+                            ipsum dolor sit
+                        </small>
+                    </a>
+                </li>
+                <li data-target="#myCarousel" data-slide-to="1">
+                    <a href="#">
+                        Projects<small>
+                            Lorem ipsum
+                            dolor sit
+                        </small>
+                    </a>
+                </li>
+                <li data-target="#myCarousel" data-slide-to="2">
+                    <a href="#">
+                        Portfolio<small>
+                            Lorem ipsum
+                            dolor sit
+                        </small>
+                    </a>
+                </li>
+                <li data-target="#myCarousel" data-slide-to="3">
+                    <a href="#">
+                        Services<small>
+                            Lorem ipsum
+                            dolor sit
+                        </small>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*NEw Section start*@
+<div class="container-fluid">
+    <div class="row text-center">
+        <img src="~/Content/resc/slider/images.png" class="img-responsive imgcenter" />
+    </div>
+</div>
+@*News Letter*@
+<div class="container">
+    <div class="row row-class">
+        <h1 class="text-center">Blog Categories</h1>
+        @{
+            foreach (var blogitems in @Model.GetAllBlogsCategory)
+            {
+                <div class="col-sm-4">
+                    <div class="news">
+                        <div class="img-figure">
+                            <div class="cat">@(blogitems.BlogCategory)</div>
+                            <img src=@("/Content/images/BlogCategories/" + blogitems.BlogImage) class="img-responsive">
+                        </div>
+                        <div class="title">
+                            <h1>@(blogitems.BlogTitle)</h1>
+                        </div>
+                        <p class="description">
+                            @(blogitems.BlogDescription)
+                        </p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="row">
+        <a class="button" href="@Url.Action("Index","BlogCategory")">View More</a>
+    </div>
+</div>
+@*Above Section end*@
+
+@*NEw Section start*@
+<div class="container-fluid">
+    <div class="row text-center">
+        <img src="~/Content/resc/slider/images.png" />
+    </div>
+</div>
+
+<div class="container">
+    <div class="row row-class">
+        <h1 class="text-center">Recent Blogs</h1>
+        @foreach (var allblogs in Model.GetAllBlogs)
+            {
+            <div class="col-sm-4">
+                <figure class="snip1166">
+                    <img src="@("/Content/images/RecentBlogs/" + allblogs.BlogPicture)" alt="@(allblogs.BlogPicture)" />
+                    <figcaption>
+                        <a href="~/ViewBlog/Index?BlogId=@allblogs.BlogID"><h3>@allblogs.BlogCategory</h3></a>
+                        <div>
+                            <p>"@(allblogs.BlogTitle) <br /> @(allblogs.BlogWriter) &nbsp; @(allblogs.BlogDate)"</p>
+                        </div>
+                        @*@Html.ActionLink("ClickME", "Index", "ViewBlog", new { BlogId = allblogs.BlogID }, null)*@
+                    </figcaption>
+                </figure>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <a class="button" href="@Url.Action("Index","AllBlog")">View More</a>
+    </div>
+</div>
+@*Above Section end*@
+
+@*NEw Section start*@
+<div class="container-fluid">
+    <div class="row text-center">
+        <img src="~/Content/resc/slider/images.png" />
+    </div>
+</div>
+@*Our top Bloggers*@
+<div class="container">
+    <div class="row ">
+        <h1 class="text-center">Top Bloggers</h1>
+        @{
+            foreach (var item in @Model.GetTopBlogger)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+                        </div>
+                        <div class="avatar">
+                            <img alt="" src="@("/Content/images/Blogger/" + item.topBlogger_ImageURL)">
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                <a target="_blank" href="#">@(item.topBlogger_Name)</a>
+                            </div>
+                            <div class="desc">@(item.topBlogger_hobbies)</div>
+                        </div>
+                        <div class="bottom">
+                            <a class="btns btn-primary btn-sm" rel="publisher"
+                               href="@(item.topBlogger_SocialLink)">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="row">
+        <a class="button" href="@Url.Action("Index","Blogger")">View More</a>
+    </div>
+</div>
+@*Above Section end*@

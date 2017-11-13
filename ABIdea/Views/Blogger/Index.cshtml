@@ -1,0 +1,36 @@
+﻿@model List<ABIdea.Models.BloggerModel.Blogger>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+<link href="~/Content/css/custom/bloggers.css" rel="stylesheet" />
+    }
+<div class="container-fluid">
+    <div class="row ">
+        <h1 class="text-center">Our Bloggers</h1>
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+                        </div>
+                        <div class="avatar">
+                            <img alt="" src="@("/Content/images/Blogger/" + item.topBlogger_ImageURL)">
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                <a target="_blank" href="#">@(item.topBlogger_Name)</a>
+                            </div>
+                            <div class="desc">@(item.topBlogger_hobbies)</div>
+                        </div>
+                        <div class="bottom">
+                            <a class="btns btn-primary btn-sm" rel="publisher"
+                               href="@(item.topBlogger_SocialLink)">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+</div>

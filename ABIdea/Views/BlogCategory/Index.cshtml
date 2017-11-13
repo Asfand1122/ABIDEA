@@ -1,0 +1,34 @@
+﻿@model  List<ABIdea.Models.BlogModel.BlogList>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+<link href="~/Content/css/custom/recent-cards.css" rel="stylesheet" />
+<script src="~/Content/js/custom/recent-cards.js"></script>
+<link href="~/Content/css/custom/bloggers.css" rel="stylesheet" />
+<link href="~/Content/css/custom/AllBlog.css" rel="stylesheet" />
+    }
+@*News Letter*@
+<div class="container">
+    <div class="row row-class">
+        <h1 class="text-center">Our Blogs</h1>
+            @foreach (var allblogs in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="news">
+                        <div class="img-figure">
+                            <div class="cat">@(allblogs.BlogCategory)</div>
+                            <img src=@("/Content/images/BlogCategories/" + allblogs.BlogPicture) class="img-responsive">
+                        </div>
+                        <div class="title">
+                            <h1>@(allblogs.BlogTitle)</h1>
+                        </div>
+                        <p class="description">
+                            @(allblogs.BlogDescription)
+                        </p>
+                    </div>
+                </div>
+            }
+    </div>
+</div>
+@*Above Section end*@

@@ -1,0 +1,27 @@
+﻿@model List<ABIdea.Models.AllBlogModel.BlogList>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+<link href="~/Content/css/custom/recent-cards.css" rel="stylesheet" />
+    }
+
+<div class="container-fluid">
+    <div class="row row-class">
+        <h1 class="text-center">Recent</h1>
+        @foreach (var allblogs in Model)
+            {
+            <div class="col-sm-4">
+                <figure class="snip1166">
+                    <img src="@("/Content/images/RecentBlogs/" + allblogs.BlogPicture)" alt="@(allblogs.BlogPicture)" />
+                    <figcaption>
+                        <a href="~/ViewBlog/Index?BlogId=@allblogs.BlogID"><h3>@allblogs.BlogCategory</h3></a>
+                        <div>
+                            <p>"@(allblogs.BlogTitle) <br /> @(allblogs.BlogWriter) &nbsp; @(allblogs.BlogDate)"</p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        }
+    </div>s
+</div>
